@@ -97,6 +97,11 @@ func main() {
 	http.HandleFunc("/api/browse", auth.RequireAuth(handler.BrowseFilesHandler(p, t), sessionMgr))
 	http.HandleFunc("/api/download", auth.RequireAuth(handler.DownloadHandler(p, t), sessionMgr))
 
+	// ── Watch Party Streaming API ──
+	http.HandleFunc("/api/stream/video", handler.VideoStreamHandler(p))
+	http.HandleFunc("/api/p2p/stream/event", handler.StreamEventP2PHandler(p))
+	http.HandleFunc("/api/ws/remote", handler.StreamSyncWSHandler(p))
+
 	// ── Start Server ──
 	addr := fmt.Sprintf(":%d", *port)
 	log.Printf("[%s] Server listening on %s", p.PeerID, addr)

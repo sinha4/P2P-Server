@@ -188,8 +188,6 @@ func (s *UserStore) loadFromFile() error {
 	return nil
 }
 
-// autoSaveLoop runs in a goroutine and periodically saves dirty data to disk.
-// Uses time.Ticker for efficient periodic execution.
 func (s *UserStore) autoSaveLoop() {
 	ticker := time.NewTicker(30 * time.Second)
 	defer ticker.Stop()

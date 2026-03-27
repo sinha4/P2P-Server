@@ -7,24 +7,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #E4568B;
-            --secondary: #5D7B3D;
-            --accent: #F6C94D;
-            --background: #A7C7E4;
-            --soft-accent: #F29BB9;
-            --text-dark: #2A2A2A;
-            --page-bg: #ffffff;
+            --primary: #00FF41;
+            --secondary: #008F11;
+            --accent: #00FFCC;
+            --background: #0D0D0D;
+            --soft-accent: #008F11;
+            --text-dark: #00FF41;
+            --page-bg: #000000;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Courier New', Consolas, monospace;
             min-height: 100vh;
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            background: url("/image.png") center/cover no-repeat fixed;
+            background: var(--page-bg);
+            background-image: linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
             color: var(--text-dark);
             padding: 3rem 1rem;
             padding-top: 5rem;
@@ -33,239 +36,81 @@
 
         /* ── User Top Bar ── */
         .user-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
+            position: fixed; top: 0; left: 0; right: 0;
+            display: flex; align-items: center; justify-content: flex-end;
             padding: 0.6rem 1.5rem;
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 2px solid var(--background);
-            z-index: 100;
-            gap: 0.75rem;
-            box-shadow: 0 2px 8px rgba(93,123,61,0.06);
+            background: rgba(13,13,13,0.9); border-bottom: 1px solid var(--primary);
+            z-index: 100; gap: 0.75rem; box-shadow: 0 2px 8px rgba(0,255,65,0.1);
         }
-        .user-bar .user-name { font-weight: 800; color: var(--secondary); font-size: 0.9rem; }
-        .user-bar .user-avatar {
-            width: 32px; height: 32px; border-radius: 10px;
-            background: linear-gradient(135deg, var(--primary), var(--soft-accent));
+        .user-bar .user-name { font-weight: bold; color: var(--primary); font-size: 0.9rem; }
+        .user-bar .user-avatar { 
+            width: 32px; height: 32px; border-radius: 2px;
+            background: var(--background); border: 1px solid var(--primary);
             display: flex; align-items: center; justify-content: center;
-            color: white; font-weight: 800; font-size: 0.85rem;
+            color: var(--primary); font-weight: bold; font-size: 0.85rem;
+            box-shadow: 0 0 5px rgba(0,255,65,0.2);
         }
         .user-bar .logout-btn {
-            background: var(--primary); color: white; border: none;
+            background: var(--background); color: var(--primary); border: 1px solid var(--primary);
             padding: 0.4rem 1rem; font-family: inherit; font-size: 0.8rem;
-            font-weight: 800; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;
+            font-weight: bold; border-radius: 2px; cursor: pointer; text-transform: uppercase;
         }
-        .user-bar .logout-btn:hover { background: var(--accent); color: var(--text-dark); }
-
+        .user-bar .logout-btn:hover { background: var(--primary); color: var(--page-bg); }
 
         .container {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 3rem;
-            width: 100%;
-            max-width: 800px;
-            box-shadow: 0 20px 40px rgba(93, 123, 61, 0.1);
-            border: 4px solid var(--background);
-            position: relative;
+            background: rgba(13, 13, 13, 0.85); border-radius: 2px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.15); border: 1px solid var(--primary);
+            padding: 3rem; width: 100%; max-width: 800px; margin: auto;
+            backdrop-filter: blur(4px);
         }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-            color: var(--secondary);
-            text-align: center;
-        }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; font-weight: bold; color: var(--primary); letter-spacing: 0.05em; text-shadow: 0 0 10px rgba(0, 255, 65, 0.5); text-transform: uppercase; text-align: center; }
+        .subtitle { color: var(--secondary); font-size: 1.15rem; font-weight: normal; margin-bottom: 3rem; opacity: 0.9; text-align: center; }
 
-        .subtitle {
-            text-align: center;
-            color: var(--secondary);
-            margin-bottom: 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            opacity: 0.85;
-        }
+        nav a { color: var(--secondary); text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: color 0.2s; }
+        nav a:hover { color: var(--primary); text-shadow: 0 0 8px rgba(0,255,65,0.5); }
 
-        nav { margin-bottom: 1rem; }
-        nav a {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.2s;
-            font-size: 0.95rem;
-        }
-        nav a:hover { color: var(--primary); }
+        .btn-refresh, .download-btn { background: var(--background); color: var(--primary); border: 1px solid var(--primary); padding: 1rem; font-size: 1.1rem; font-weight: bold; font-family: inherit; border-radius: 2px; cursor: pointer; text-transform: uppercase; transition: all 0.2s; }
+        .btn-refresh { padding: 0.75rem 1.5rem; font-size: 0.95rem; display: block; margin: 0 auto 1.5rem auto; }
+        .download-btn { padding: 0.6rem 1.2rem; }
+        .btn-refresh:hover, .download-btn:hover { background: rgba(0,255,65,0.1); box-shadow: 0 0 15px rgba(0,255,65,0.3); transform: translateY(-1px); }
+        .download-btn:hover { background: var(--primary); color: var(--page-bg); }
 
-        .btn-refresh {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 0.95rem;
-            font-weight: 800;
-            border-radius: 12px;
-            cursor: pointer;
-            margin-bottom: 1.5rem;
-            transition: all 0.2s ease-in-out;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 4px 10px rgba(228, 86, 139, 0.3);
-        }
-        .btn-refresh:hover { 
-            background: var(--accent);
-            color: var(--text-dark);
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 15px rgba(246, 201, 77, 0.4); 
-        }
-        .btn-refresh:active { transform: translateY(0); }
-
-        .file-card {
-            background: var(--page-bg);
-            border: 2px solid rgba(167, 199, 228, 0.5); /* translucent background var */
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.2s ease-in-out;
-        }
-        .file-card:hover {
-            border-color: var(--soft-accent);
-            background: #ffffff;
-            transform: translateX(4px);
-            box-shadow: 0 4px 12px rgba(228, 86, 139, 0.1);
-        }
-
-        .file-info { flex: 1; }
-        .file-info strong { display: block; font-size: 1.15rem; color: var(--secondary); margin-bottom: 0.25rem; font-weight: 800; }
-        .file-info small { color: var(--secondary); font-weight: 600; font-size: 0.9rem; opacity: 0.8; }
-
-        .download-btn {
-            background: var(--secondary);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            font-weight: 800;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            box-shadow: 0 4px 10px rgba(93, 123, 61, 0.3);
-        }
-        .download-btn:hover { 
-            background: var(--accent); 
-            color: var(--text-dark);
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 15px rgba(246, 201, 77, 0.4); 
-        }
-        .download-btn:active { transform: translateY(0); }
-
-        #status {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            text-align: center;
-            display: none;
-        }
-        .status-loading { display: block !important; background: var(--page-bg); color: var(--secondary); border: 2px solid var(--background); }
-        .status-success { display: block !important; background: rgba(93, 123, 61, 0.15); color: var(--secondary); border: 2px solid rgba(93, 123, 61, 0.4); }
-        .status-error { display: block !important; background: rgba(228, 86, 139, 0.15); color: var(--primary); border: 2px solid rgba(228, 86, 139, 0.4); }
-
-        /* Chunk source visualization */
-        #chunkDetails {
-            margin-top: 2rem;
-            background: var(--page-bg);
-            border: 2px dashed rgba(167, 199, 228, 0.8);
-            border-radius: 16px;
-            padding: 1.5rem;
-            display: none;
-        }
-        #chunkDetails.visible { display: block; animation: fadeIn 0.4s ease-out; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .dashboard-main-title {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            font-size: 1.25rem;
-            border-bottom: 2px solid rgba(242, 155, 185, 0.5); /* soft-accent */
-            padding-bottom: 0.75rem;
-        }
-
-        .dashboard-section-title {
-            color: var(--secondary);
-            margin-bottom: 0.75rem;
-            font-weight: 800;
-            font-size: 1rem;
-        }
-
-        .peers-summary { margin-bottom: 1.5rem; }
-        .peer-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.35rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 800;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .chunk-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 0.8rem;
-        }
-        .chunk-cell {
-            width: 36px; height: 36px;
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.75rem; font-weight: 800; color: white;
-            cursor: default; position: relative;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-            transition: transform 0.1s;
-        }
-        .chunk-cell:hover { transform: scale(1.1); z-index: 2; }
-        .chunk-cell:hover::after {
-            content: attr(data-tooltip);
-            position: absolute; bottom: 115%; left: 50%; transform: translateX(-50%);
-            background: var(--text-dark); color: #fff; padding: 4px 10px; border-radius: 8px;
-            font-size: 0.8rem; white-space: nowrap; z-index: 10;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
+        /* Download Specific */
+        .file-card { background: var(--background); border: 1px solid var(--secondary); padding: 1.5rem; margin-bottom: 1rem; border-radius: 2px; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;}
+        .file-card:hover { border-color: var(--primary); background: rgba(0,255,65,0.05); transform: translateX(4px); box-shadow: -4px 0 0 var(--primary), 0 0 10px rgba(0,255,65,0.1); }
+        .file-info strong { color: var(--primary); font-size: 1.15rem; display: block; margin-bottom: 0.25rem; font-weight: bold; }
+        .file-info small { color: var(--secondary); font-size: 0.9rem; }
         
-        #loadBarInner {
-            height: 24px;
-            border-radius: 12px;
-            display: flex;
-            overflow: hidden;
-            background: rgba(167, 199, 228, 0.3);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-            margin-top: 0.5rem;
-            margin-bottom: 2rem;
-        }
-        .load-bar-segment {
-            height: 100%; display: flex; align-items: center; justify-content: center;
-            font-size: 0.75rem; color: white; font-weight: 800;
-            transition: width 0.5s ease-out;
-        }
+        #status { margin-top: 1.5rem; padding: 1rem; border-radius: 2px; font-weight: bold; text-align: center; display: none; }
+        .status-loading { display: block!important; background: rgba(0,143,17,0.1); color: var(--accent); border: 1px solid var(--secondary); }
+        .status-success { display: block!important; background: rgba(0,255,65,0.1); color: var(--primary); border: 1px solid var(--primary); }
+        .status-error { display: block!important; background: rgba(255,0,0,0.1); color: #ff3333; border: 1px solid #ff3333; }
+
+        #chunkDetails { margin-top: 2rem; background: rgba(0,0,0,0.5); border: 1px dashed var(--secondary); border-radius: 2px; padding: 1.5rem; display: none; }
+        #chunkDetails.visible { display: block; }
+        .dashboard-main-title { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.25rem; border-bottom: 1px solid var(--secondary); padding-bottom: 0.75rem; text-transform: uppercase; }
+        .dashboard-section-title { color: var(--secondary); margin-bottom: 0.75rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold; }
+        .peers-summary { margin-bottom: 1.5rem; }
+        .peer-badge { display: inline-flex; padding: 0.25rem 0.6rem; border-radius: 2px; font-size: 0.8rem; font-weight: bold; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid currentColor; background: rgba(0,0,0,0.5); align-items: center;}
+        .chunk-grid { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 0.8rem; }
+        .chunk-cell { width: 28px; height: 28px; border-radius: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; border: 1px solid rgba(0,0,0,0.5); position: relative; cursor: default; }
+        .chunk-cell:hover { z-index: 2; border-color: white; box-shadow: 0 0 8px currentColor; transform: scale(1.1); }
+        
+        #loadBarInner { height: 16px; border: 1px solid var(--secondary); display: flex; background: var(--background); margin-top: 0.5rem; margin-bottom: 2rem; overflow: hidden; }
+        .load-bar-segment { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; border-right: 1px solid rgba(0,0,0,0.3); transition: width 0.5s ease-out; }
+        .load-bar-segment:last-child { border-right: none; }
+
+        /* ── Video Modal ── */
+        #videoModal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); z-index: 999; display: none; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        #videoPlayer { max-width: 90%; max-height: 80vh; border: 2px solid var(--primary); box-shadow: 0 0 30px rgba(0,255,65,0.2); background: #000; border-radius: 4px; }
+        .video-controls { margin-top: 1.5rem; display: flex; gap: 1rem; }
+        .stream-btn { background: var(--background); color: var(--accent); border: 1px solid var(--accent); padding: 0.6rem 1.2rem; font-size: 1.1rem; font-weight: bold; font-family: inherit; border-radius: 2px; cursor: pointer; text-transform: uppercase; transition: all 0.2s; }
+        .stream-btn:hover { background: var(--accent); color: var(--page-bg); box-shadow: 0 0 15px rgba(0,255,204,0.3); transform: translateY(-1px); }
+        #endStreamBtn { border-color: #ff3333; color: #ff3333; }
+        #endStreamBtn:hover { background: #ff3333; color: white; box-shadow: 0 0 15px rgba(255,51,51,0.3); }
+        .stream-badge { position: absolute; top: 1.5rem; left: 1.5rem; color: var(--primary); font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem; animation: blink 2s infinite; text-transform: uppercase; letter-spacing: 0.1em; }
+        @keyframes blink { 0%, 100% { opacity: 1; text-shadow: 0 0 15px var(--primary); } 50% { opacity: 0.4; text-shadow: none; } }
     </style>
 </head>
 <body>
@@ -298,21 +143,91 @@
         </div>
     </div>
 
+    <!-- Video Watch Party Modal -->
+    <div id="videoModal">
+        <div class="stream-badge">🔴 LIVE SYNC</div>
+        <video id="videoPlayer" width="800"></video>
+        <div class="video-controls">
+            <button id="endStreamBtn" class="stream-btn" onclick="endStream()" style="display:none;">End Watch Party</button>
+        </div>
+    </div>
+
     <script>
         const statusDiv = document.getElementById('status');
         const fileListDiv = document.getElementById('fileList');
         const chunkDetailsDiv = document.getElementById('chunkDetails');
 
-        // Derived colors based on the requested theme
+        // ── Watch Party WebSocket ──
+        let ws;
+        let isHost = false;
+        
+        function connectWS() {
+            const proto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            ws = new WebSocket(`${proto}//${window.location.host}/api/ws/remote`);
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                if (data.action === 'start') {
+                    if (!isHost) openVideoModal(data.file_name, data.host_url, false);
+                } else if (data.action === 'end') {
+                    if (!isHost) closeVideoModal();
+                }
+            };
+            ws.onclose = () => { setTimeout(connectWS, 2000); };
+        }
+        connectWS();
+
+        function startStream(fileName, hostAddr) {
+            isHost = true;
+            const hostUrl = `http://${window.location.host}`;
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ action: 'start', file_name: fileName, host_url: hostUrl }));
+            }
+            openVideoModal(fileName, hostUrl, true);
+        }
+
+        function endStream() {
+            if (isHost && ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ action: 'end' }));
+            }
+            closeVideoModal();
+            isHost = false;
+        }
+
+        function openVideoModal(fileName, hostUrl, hostStatus) {
+            const modal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const endBtn = document.getElementById('endStreamBtn');
+            const badge = modal.querySelector('.stream-badge');
+
+            videoPlayer.src = `${hostUrl}/api/stream/video?name=${encodeURIComponent(fileName)}`;
+            if (hostStatus) {
+                videoPlayer.controls = true;
+                endBtn.style.display = 'block';
+                badge.innerHTML = '🔴 HOSTING LIVE SYNC';
+            } else {
+                videoPlayer.controls = false; 
+                endBtn.style.display = 'none';
+                badge.innerHTML = '🔴 WATCHING LIVE SYNC';
+            }
+            modal.style.display = 'flex';
+            videoPlayer.play().catch(e => console.log("Autoplay blocked:", e));
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.pause();
+            videoPlayer.src = '';
+            modal.style.display = 'none';
+        }
+
         const PEER_COLORS = [
-            '#E4568B', // Sunset Petal
-            '#5D7B3D', // Leaflit Green
-            '#F6C94D', // Golden Pollen (Text can be hard to read here but OK for blocks)
-            '#A7C7E4', // Evening Sky
-            '#F29BB9', // Rosebud Blush
-            '#c73b6f', // Dark Sunset
-            '#42592a', // Dark Leaf
-            '#84a8c9'  // Dark Sky
+            '#00FF41', // Matrix Green
+            '#00FFCC', // Cyan Accent
+            '#008F11', // Darker Green
+            '#00CC33', // Mid Green
+            '#33FF66'
+
         ];
 
         function setStatus(msg, type) {
@@ -338,12 +253,21 @@
                 files.forEach(f => {
                     const card = document.createElement('div');
                     card.className = 'file-card';
+                    
+                    let streamBtn = '';
+                    if (f.file_name.toLowerCase().endsWith('.mp4')) {
+                        streamBtn = `<button class="stream-btn" onclick="startStream('${f.file_name}', '${f.peer_address}')">Watch Party</button>`;
+                    }
+
                     card.innerHTML = `
                         <div class="file-info">
                             <strong>${f.file_name}</strong>
                             <small>Size: ${formatSize(f.file_size)} &bull; Segments: ${f.total_chunks} &bull; Network Availability: ${f.peers_count} node(s)</small>
                         </div>
-                        <button class="download-btn" onclick="downloadFile('${f.file_name}', '${f.peer_address}')">Retrieve</button>
+                        <div style="display:flex; gap: 0.75rem; align-items:center;">
+                            ${streamBtn}
+                            <button class="download-btn" onclick="downloadFile('${f.file_name}', '${f.peer_address}')">Retrieve</button>
+                        </div>
                     `;
                     fileListDiv.appendChild(card);
                 });
