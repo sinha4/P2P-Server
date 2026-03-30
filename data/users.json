@@ -1,0 +1,20 @@
+{
+  "Al": {
+    "username": "Al",
+    "display_name": "Al",
+    "password_hash": "$2a$10$u2tga2Zfoc6vynFDhyLo/eAp7/5qpplmsIlRLmsXRRULh4wDXaREq",
+    "created_at": "2026-03-27T11:03:47+05:30"
+  },
+  "Ella": {
+    "username": "Ella",
+    "display_name": "Ella",
+    "password_hash": "$2a$10$pOZWnOFhdY6NDs2XS9N5vO.uzwaKvPg0kHVJuhBGXWHzo4HnNWQCu",
+    "created_at": "2026-03-27T11:30:50+05:30"
+  },
+  "Elvis": {
+    "username": "Elvis",
+    "display_name": "Elvis",
+    "password_hash": "$2a$10$/fDivziej6Nk9bGwVb6ElecUHBaW4TRY9ziN3HrRwWJIC1eOaY2S.",
+    "created_at": "2026-03-27T10:25:24+05:30"
+  }
+}
